@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Una noche especial</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #fef1f4, #ffe6ec);
+      font-family: 'Georgia', serif;
+      color: #4d2c2c;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 3rem 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #d6336c;
+      margin-bottom: 1rem;
+    }
+
+    .card {
+      background-color: #fff0f5;
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: auto;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      margin: 1rem 0;
+    }
+
+    .button {
+      background-color: #d6336c;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 1rem;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+
+    .hearts, .extra-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .hearts span, .extra-hearts span {
+      position: absolute;
+      display: block;
+      color: #ff6b81;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .mensaje {
+      font-size: 1.3rem;
+      color: #d6336c;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Música de fondo -->
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8d776bd1a3.mp3?filename=romantic-piano-112977.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <!-- Corazones flotantes base -->
+  <div class="hearts">
+    <span style="left: 10%; font-size: 2rem;">❤️</span>
+    <span style="left: 30%; font-size: 1.5rem;">💗</span>
+    <span style="left: 60%; font-size: 1.8rem;">💕</span>
+    <span style="left: 80%; font-size: 2.2rem;">💖</span>
+  </div>
+
+  <!-- Contenido -->
+  <div class="container">
+    <h1>Una noche especial</h1>
+    <div class="card">
+      <p>Mi amor,</p>
+      <p>Este <strong>jueves 12 de junio a las 8:15 p.m.</strong>, te invito a vivir una velada inolvidable conmigo en el encantador <strong>Museo Larco Café</strong>.</p>
+      <p>He reservado una mesa solo para nosotros dos. Será una cena a la carta entre jardines mágicos y estrellas brillantes.</p>
+      <p>Te espero con todo mi amor. 💘</p>
+      <p><em>– Bladimir</em></p>
+      <a href="https://maps.app.goo.gl/7jEauw1qUpGBue1k7" target="_blank" class="button">📍 Ver ubicación</a><br>
+      <button id="confirmarBtn" class="button" onclick="confirmarAsistencia()">💌 Confirmar asistencia</button>
+      <div class="mensaje" id="mensaje">Gracias mi amor, la pasaremos increíble <3 💖</div>
+    </div>
+  </div>
+
+  <!-- Corazones dinámicos -->
+  <div class="extra-hearts" id="extraHearts"></div>
+
+  <script>
+    function confirmarAsistencia() {
+      // Oculta el botón
+      document.getElementById("confirmarBtn").style.display = "none";
+      // Muestra mensaje
+      document.getElementById("mensaje").style.display = "block";
+
+      // Crea corazones flotando
+      const container = document.getElementById("extraHearts");
+      for (let i = 0; i < 30; i++) {
+        const span = document.createElement("span");
+        span.innerHTML = "💗";
+        span.style.left = Math.random() * 100 + "vw";
+        span.style.top = Math.random() * 100 + "vh";
+        span.style.fontSize = (Math.random() * 20 + 20) + "px";
+        span.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        container.appendChild(span);
+        setTimeout(() => span.remove(), 6000);
+      }
+    }
+  </script>
+
+</body>
+</html>
